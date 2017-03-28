@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Test</display-name>
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>pages/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	
+
+
+    <!-- Security is active on entire directory -->
+    <security-constraint>
+        <display-name>Server Security Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Server Protected Area</web-resource-name>
+             <!-- Define the context-relative URL(s) to be protected -->
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <!-- Anyone with one of the listed roles may access this area -->
+            <!-- Should have per-module/per-submodule access control here -->
+            <role-name>*</role-name>
+        </auth-constraint>
+    </security-constraint>
+	
+
+    <!-- Login configuration uses form-based authentication -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>Server Authentication Area</realm-name>
+        <form-login-config>
+            <form-login-page>/pages/login.jsp</form-login-page>
+            <form-error-page>/pages/errorShow.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
+
+    <security-role>
+        <role-name>*</role-name>
+    </security-role>
+
+</web-app>

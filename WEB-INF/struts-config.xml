@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="testActionForm" type="com.jsc.ex1.TestForm"></form-bean>
+	</form-beans>
+
+	<action-mappings>
+        <action path="/testDispatchAction" type="com.jsc.ex1.TestAction" name="testActionForm" scope="session" validate="false">
+			<forward name="testAction1" path="/pages/success1.jsp"></forward>
+		</action>
+	</action-mappings>
+
+</struts-config>
